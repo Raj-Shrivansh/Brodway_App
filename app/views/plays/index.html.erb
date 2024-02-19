@@ -1,1 +1,9 @@
-<h1>Index page</h1>
+<h1 class='text-center'><%= params[:category] %></h1>
+<% if @plays.count == 0 %>
+    <h3>There are no  plays in this category yet.</h3>
+<% else %>
+    <% @plays.each do |play| %>
+    <h2> <li><%= link_to play.title , play_path(play) %></li></h2>
+    <hr>
+<% end %>
+<% end %>
