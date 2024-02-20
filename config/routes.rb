@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'plays#index'
-  resources :plays
+  resources :plays do
+    resources :reviews
+  end
 end

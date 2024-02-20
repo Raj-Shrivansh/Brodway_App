@@ -12,10 +12,21 @@
             <p class="play-desc"><%= @play.desc %></p>
             <% if user_signed_in? %>
                 <% if @play.user_id == current_user.id %>
-                <%= link_to 'Edit',edit_play_path(@play),class:"btn btn-outline-warning text-white btn-lg mx-5"%>
-                <%= link_to 'Delete',@play, data: {turbo_method: 'delete', turbo_confirm: "are you sure"},class:"btn btn-outline-danger btn-lg"%>
-            <% end %>
-            <% end %>
+                    <%= link_to 'Edit',edit_play_path(@play),class:"btn btn-outline-warning text-white btn-lg mx-5"%>
+                    <%= link_to 'Delete',@play, data: {turbo_method: 'delete', turbo_confirm: "are you sure"},class:"btn btn-outline-danger btn-lg"%>
+                <% end %>
+                <% if current_user.id != @play.user_id%>
+                <%= link_to "Add Reviews",new_play_review_path(@play),class:"btn btn-outline-info"%>
+                <% end %>
+                <% end %>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="md-12 px-5">
+        <div class="reviews">
+            <%= render @play.reviews %>
         </div>
     </div>
 </div>

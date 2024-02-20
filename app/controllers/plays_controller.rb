@@ -1,5 +1,6 @@
 class PlaysController < ApplicationController
     before_action :find_plays, only: [:show,:edit,:update,:destroy]
+    before_action :authenticate_user!, only: [:new, :edit]
     def index
         if params[:category].blank?
             @plays=Play.all.order("created_at DESC")
@@ -43,7 +44,7 @@ class PlaysController < ApplicationController
         flash[:alert]= "Deleted Play!"
         redirect_to plays_path
     end
-    
+
     private
     def play_params
         params.require(:play).permit(:title,:desc,:director,:main_image,:category_id)
