@@ -1,10 +1,21 @@
-<h2 class="text-center"><%= @play.title %></h2>
-<p><%= @play.desc %></p>
-<li><Strong>Director Name : </Strong> <%= @play.director %></li>
-<li><Strong>Category : </Strong> <%= @play.category.name %></li>
-<% if user_signed_in? %>
-    <% if @play.user_id == current_user.id %>
-<%= link_to 'Edit',edit_play_path(@play),class:"btn btn-outline-warning text-white btn-lg"%>
-<%= link_to 'Delete',@play, data: {turbo_method: 'delete', turbo_confirm: "are you sure"},class:"btn btn-outline-danger btn-lg"%>
-<% end %>
-<% end %>
+<div class="row mt-5">
+    <div class="col-md-4">
+        <% if @play.main_image.present? %>
+            <%= image_tag @play.main_image,class:"play-show" %>
+        <% end %>
+    </div>
+    <div class="col-md-8 px-5">
+        <div class="play-info">
+            <h2 class="play-title"><%= @play.title %></h2> 
+            <h4 class="play-direcor"><span>By </span> <%= @play.director %></h4>
+            <h4 class="play-director"><%= @play.category.name %></h4>
+            <p class="play-desc"><%= @play.desc %></p>
+            <% if user_signed_in? %>
+                <% if @play.user_id == current_user.id %>
+                <%= link_to 'Edit',edit_play_path(@play),class:"btn btn-outline-warning text-white btn-lg mx-5"%>
+                <%= link_to 'Delete',@play, data: {turbo_method: 'delete', turbo_confirm: "are you sure"},class:"btn btn-outline-danger btn-lg"%>
+            <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>

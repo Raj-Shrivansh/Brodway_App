@@ -43,9 +43,10 @@ class PlaysController < ApplicationController
         flash[:alert]= "Deleted Play!"
         redirect_to plays_path
     end
+    
     private
     def play_params
-        params.require(:play).permit(:title,:desc,:director, :category_id)
+        params.require(:play).permit(:title,:desc,:director,:main_image,:category_id)
     end
     def find_plays
         @play=Play.find(params[:id])

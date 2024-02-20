@@ -57,6 +57,10 @@
     <% end %>
 </div>
 <% end %>
+<div class="row mb-3">
+<%= f.label :"Play Image"%>
+<%= f.file_field :main_image%>
+</div>
 <div class="d-grid gap-2 col-6 mx-auto">
 <% if @play.persisted? %>
     <%= f.submit "Update Play",class:"btn btn-primary"%>
